@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>LIVE PRINT — Khách hàng</title>
+<style>
+:root{font-family:system-ui,-apple-system,'Segoe UI',sans-serif;color:#152238;background:#f4f7fb}*{box-sizing:border-box}body{margin:0}.top{background:#112d50;color:white;padding:20px max(20px,calc((100vw - 1020px)/2));display:flex;justify-content:space-between;align-items:center;gap:12px}.logo{font-size:23px;font-weight:850;letter-spacing:.5px}.tag{font-size:12px;color:#a9d6ff}.wrap{max-width:1020px;margin:28px auto;padding:0 16px}.grid{display:grid;grid-template-columns:1.1fr .9fr;gap:24px}.panel{background:white;border:1px solid #e2e8f0;border-radius:18px;padding:26px;box-shadow:0 8px 28px #112d5010}h1{font-size:28px;line-height:1.2;margin:0 0 14px}h2{font-size:21px;margin:0 0 16px}.muted{color:#5d6b7e;line-height:1.6}.benefit{margin:17px 0;padding:0;list-style:none}.benefit li{margin:13px 0}label{display:block;font-size:13px;font-weight:700;margin:14px 0 6px}input{width:100%;border:1px solid #cbd5e1;border-radius:10px;padding:12px 13px;font-size:15px;outline-color:#0b79ed}button{cursor:pointer;border:0;border-radius:10px;padding:12px 16px;font-size:15px;font-weight:750;background:#0879ed;color:white}button:disabled{opacity:.55;cursor:wait}.secondary{background:#e9f1fb;color:#15528b}.tabs{display:flex;gap:7px;margin-bottom:20px}.tabs button{flex:1}.tabs button:not(.active){background:#edf2f8;color:#53647a}.msg{margin:15px 0 0;padding:12px;border-radius:10px;background:#eef5ff;color:#134f91;white-space:pre-wrap;overflow-wrap:anywhere}.msg.error{background:#fff0f0;color:#a5212b}.hidden{display:none!important}.small{font-size:12px;color:#64748b}.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.stat{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:20px 0}.stat>div{background:#f1f6fc;border-radius:12px;padding:15px;text-align:center}.stat b{display:block;font-size:22px;color:#0c67c6}.foot{font-size:12px;color:#718096;margin:26px 0;text-align:center}.note{background:#fff8e6;border:1px solid #f5dda1;border-radius:12px;padding:12px;font-size:13px;line-height:1.5}@media(max-width:740px){.grid{grid-template-columns:1fr}.top{padding:17px}.panel{padding:20px}.stat{gap:6px}.stat>div{padding:10px 4px}.stat b{font-size:19px}}
+</style>
+<style>
+.order-area{margin-top:24px}.order-layout{display:grid;grid-template-columns:1fr 1fr;gap:20px}.order-area h2{margin:0 0 12px}.order-area .hint{color:#64748b;font-size:13px}.order-items{display:grid;grid-template-columns:2fr .75fr 1fr auto;gap:8px;align-items:end;margin:10px 0}.order-items input{min-width:0}.order-items button{padding:12px;background:#fce8e8;color:#a32020}.order-summary{padding:16px;background:#edf5ff;border-radius:12px;margin-top:14px}.order-total{font-size:24px;font-weight:800;color:#086ad1}.order-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}.order-actions button{flex:1}.preview-paper{max-width:320px;margin:12px auto;padding:14px;background:#fff;border:1px dashed #aaa;font-family:monospace;font-size:12px;color:#111;white-space:pre-wrap;overflow-wrap:anywhere}.print-only{display:none}@media(max-width:740px){.order-layout{grid-template-columns:1fr}.order-items{grid-template-columns:1.6fr .65fr .9fr auto;gap:4px}.order-items input{padding:9px 5px;font-size:13px}.order-items button{padding:10px 8px}}@media print{@page{size:80mm auto;margin:2mm}body *{visibility:hidden!important}.print-only,.print-only *{visibility:visible!important}.print-only{display:block!important;position:absolute;top:0;left:0;width:72mm;font:12px monospace;color:black;white-space:pre-wrap;overflow-wrap:anywhere}body{background:white}}
+</style>
+<style>
+#adminEntry{background:#c82132;color:#fff;border-radius:9px;padding:10px 14px}
+#adminArea{margin-top:20px}#adminFrame{width:100%;min-height:78vh;border:1px solid #d7dfe9;border-radius:12px;background:white}
+</style>
+<style>
+.channels{margin-top:22px}.channel-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}.channel-card{border:1px solid #dce5ef;border-radius:14px;padding:16px;background:#fff}.channel-card h3{margin:0 0 7px}.channel-status{font-size:13px;color:#6b7280;margin:10px 0}.channel-actions{display:flex;gap:8px;flex-wrap:wrap}.channel-actions button{font-size:13px;padding:9px 12px}.channel-notice{font-size:13px;color:#53647a;margin-top:12px;line-height:1.6}
+</style>
+</head>
+<body>
+<header class="top"><div><div class="logo">LIVE PRINT</div><div class="tag">Quản lý đơn hàng • In đơn nhanh</div></div><div class="row"><span class="tag">Cổng khách hàng</span><button id="adminEntry" class="hidden" type="button">Quản trị ADMIN</button></div></header>
+<main class="wrap"><div class="grid"><section class="panel"><h1>Bán hàng gọn hơn với LIVE PRINT</h1><p class="muted">Tạo tài khoản, quản lý shop và chuẩn bị in đơn hàng trên máy in nhiệt 80mm.</p><div class="stat"><div><b>48 giờ</b><span class="small">Dùng thử</span></div><div><b>30 đơn</b><span class="small">Miễn phí</span></div><div><b>1 máy</b><span class="small">Thiết bị</span></div></div><ul class="benefit"><li>✓ Một tài khoản quản lý một shop</li><li>✓ Tự động kiểm tra hạn dùng thử</li><li>✓ Dùng chung tài khoản Supabase, không đăng ký lại trên phần mềm</li><li>✓ Hết hạn sẽ chặn tạo đơn mới, không tự xóa dữ liệu</li></ul><div class="note">Trang này là cổng đăng ký/đăng nhập. Chức năng tạo đơn và in nhiệt sẽ được tích hợp ở bước tiếp theo.</div></section>
+<section class="panel" id="authPanel"><div id="signedOut"><div class="tabs"><button class="active" id="tabLogin" type="button">Đăng nhập</button><button id="tabSignup" type="button">Đăng ký</button></div><form id="authForm"><div id="shopField" class="hidden"><label for="shopName">Tên shop</label><input id="shopName" maxlength="100" placeholder="Ví dụ: Shop Tiến 2Hand" autocomplete="organization"></div><label for="email">Email</label><input id="email" type="email" autocomplete="email" required placeholder="email@example.com"><label for="password">Mật khẩu</label><input id="password" type="password" minlength="6" autocomplete="current-password" required placeholder="Tối thiểu 6 ký tự"><button style="width:100%;margin-top:20px" id="submitBtn" type="submit">Đăng nhập</button></form><p class="small">Đăng ký cần xác minh email trước khi kích hoạt dùng thử.</p><button class="secondary" type="button" id="resetPassword">Quên mật khẩu?</button></div>
+<div id="signedIn" class="hidden"><h2>Tài khoản của bạn</h2><p class="muted" id="accountEmail"></p><div id="shopBox" class="hidden"><p id="shopInfo" class="muted"></p></div><div id="activateBox" class="hidden"><p class="muted">Tài khoản chưa có shop. Kích hoạt gói dùng thử của bạn:</p><label for="newShopName">Tên shop</label><input id="newShopName" maxlength="100" placeholder="Nhập tên shop"><button id="activateBtn" style="width:100%;margin-top:14px" type="button">Kích hoạt 48 giờ miễn phí</button></div><div id="pendingBox" class="hidden"><p class="muted">Không thể xác định shop của tài khoản. Nếu đã có shop, không kích hoạt dùng thử lần nữa.</p></div><button id="logoutBtn" class="secondary" style="margin-top:18px" type="button">Đăng xuất</button></div><div id="message" class="msg hidden" role="status" aria-live="polite"></div></section></div><section id="orderArea" class="order-area hidden"><div class="panel"><h2><icon></icon>Tạo phiếu bán hàng</h2><p class="hint">Lưu đơn vào Supabase theo shop đang đăng nhập. Mỗi lần lưu thành công sẽ tính vào hạn mức gói.</p><div class="order-layout"><div><label for="orderCustomer">Tên khách hàng</label><input id="orderCustomer" placeholder="Ví dụ: Chị Lan" maxlength="100"><label for="orderPhone">Số điện thoại (không bắt buộc)</label><input id="orderPhone" inputmode="tel" maxlength="20" placeholder="09..."><label for="orderNote">Ghi chú</label><input id="orderNote" maxlength="180" placeholder="Giao hàng, thanh toán..."><h2 style="margin-top:22px">Sản phẩm</h2><div class="small">Tên sản phẩm / Số lượng / Đơn giá (đ)</div><div id="orderItems"></div><button type="button" class="secondary" id="addItem">+ Thêm sản phẩm</button></div><div><h2>Xem trước phiếu</h2><div id="receiptPreview" class="preview-paper"></div><div class="order-summary"><div>Tổng cộng</div><div class="order-total" id="orderTotal">0 đ</div><div class="small">Chưa bao gồm phí vận chuyển</div></div><div class="order-actions"><button type="button" id="saveOrder">Lưu đơn</button><button type="button" id="printReceipt" class="secondary">In phiếu 80mm</button><button type="button" class="secondary" id="clearReceipt">Làm mới</button></div><p class="small">Chọn khổ giấy 80mm khi in. Nên lưu đơn trước khi in; in phiếu không tự tạo đơn hàng.</p></div></div></div></section><section id="channelArea" class="panel channels hidden" aria-label="Kết nối kênh bán hàng">
+<h2>Kết nối kênh bán hàng</h2><p class="muted">Quản lý Facebook Page và TikTok LIVE tại một nơi. Chỉ tài khoản shop đã đăng nhập mới thấy mục này.</p>
+<div class="channel-grid">
+<div class="channel-card"><h3>Facebook Page</h3><div class="channel-status" id="fbStatus">Chưa kiểm tra kết nối</div><div class="channel-actions"><button type="button" id="fbConnect">Kết nối Facebook Page</button><button type="button" class="secondary" id="fbRefresh">Làm mới</button></div><p class="small">Nhận bình luận và tạo đơn tự động cần Meta App được cấp quyền phù hợp cùng dịch vụ webhook.</p></div>
+<div class="channel-card"><h3>TikTok LIVE</h3><div class="channel-status" id="ttStatus">Chưa kiểm tra kết nối</div><div class="channel-actions"><button type="button" id="ttConnect">Kết nối TikTok</button><button type="button" class="secondary" id="ttRefresh">Làm mới</button></div><p class="small">Đăng nhập TikTok không đồng nghĩa với quyền đọc bình luận LIVE. Tính năng này chỉ hoạt động khi backend được cấp quyền truy cập phù hợp.</p></div>
+</div><div id="channelMessage" class="channel-notice" role="status">Kết nối chính thức cần cấu hình API trên máy chủ. Không nhập mật khẩu Facebook/TikTok vào website này.</div>
+</section>
+<section id="adminArea" class="panel hidden" aria-label="Quản trị LIVE PRINT"><div class="row" style="justify-content:space-between"><h2>Quản trị LIVE PRINT</h2><button id="closeAdmin" type="button" class="secondary">Đóng ×</button></div><p class="small">Chỉ tài khoản Super Admin được cấp quyền trong Supabase mới thấy mục này. Khi mở lần đầu, trang quản trị có thể yêu cầu đăng nhập riêng.</p><iframe id="adminFrame" title="LIVE PRINT ADMIN" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe></section><div id="printSheet" class="print-only"></div><p class="foot">LIVE PRINT © 2026 • Không lưu mật khẩu vào trình duyệt ngoài phiên đăng nhập Supabase.</p></main>
+<script type="module">
+// THAY 2 GIÁ TRỊ BÊN DƯỚI BẰNG PROJECT URL VÀ PUBLISHABLE/ANON KEY CỦA SUPABASE.
+// TUYỆT ĐỐI KHÔNG DÙNG SERVICE_ROLE KEY HOẶC SECRET KEY.
+const SUPABASE_URL = 'https://kdollevzexccwafsmeqz.supabase.co';
+const SUPABASE_ANON_KEY = 'sb_publishable_hW679ACY9L5vhgCIP7Zg8Q_UB5xVuEh';
+const $=id=>document.getElementById(id);
+const ready=SUPABASE_URL.startsWith('https://') && !SUPABASE_ANON_KEY.startsWith('YOUR_');
+const {createClient}=await import('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm');
+const supabase=ready?createClient(SUPABASE_URL,SUPABASE_ANON_KEY):null;
+let mode='login',busy=false;
+let adminCheckVersion=0;
+function hideAdmin(){ $('adminEntry').classList.add('hidden');$('adminArea').classList.add('hidden');$('adminFrame').removeAttribute('src'); }
+async function checkAdmin(user){
+ const version=++adminCheckVersion;
+ hideAdmin();
+ if(!user)return;
+ // Chỉ hiển thị nút khi RLS cho phép đọc chính bản ghi admin của user.
+ const {data,error}=await supabase.from('lp_admins').select('user_id').eq('user_id',user.id).maybeSingle();
+ if(version!==adminCheckVersion)return;
+ if(!error&&data?.user_id===user.id)$('adminEntry').classList.remove('hidden');
+}
+$('adminEntry').onclick=()=>{ $('adminArea').classList.remove('hidden');$('adminFrame').src='admin.html';$('adminArea').scrollIntoView({behavior:'smooth'}); };
+$('closeAdmin').onclick=()=>{ $('adminArea').classList.add('hidden');$('adminFrame').removeAttribute('src'); };
+let currentShopId=null, currentShopActive=false, savingOrder=false, savedOrderId=null;
+// Kênh bán hàng: chỉ giao diện và luồng gọi backend an toàn. Không giả lập đã kết nối.
+const CHANNEL_FUNCTION='lp-channel-connect'; // Supabase Edge Function cần triển khai riêng.
+let channelCheckId=0;
+function channelMessage(t){$('channelMessage').textContent=t;}
+function channelReset(){channelCheckId++;$('channelArea').classList.add('hidden');$('fbStatus').textContent='Chưa kiểm tra kết nối';$('ttStatus').textContent='Chưa kiểm tra kết nối';}
+async function channelCall(provider,action){
+ if(!supabase||!currentShopId)throw Error('Bạn cần đăng nhập và có shop trước khi kết nối.');
+ const {data:{session},error:authError}=await supabase.auth.getSession();
+ if(authError||!session?.access_token)throw Error('Phiên đăng nhập đã hết hạn.');
+ const response=await fetch(SUPABASE_URL+'/functions/v1/'+CHANNEL_FUNCTION,{
+  method:'POST',headers:{'Content-Type':'application/json','apikey':SUPABASE_ANON_KEY,'Authorization':'Bearer '+session.access_token},
+  body:JSON.stringify({provider,action,shop_id:currentShopId})
+ });
+ let payload={};try{payload=await response.json()}catch(_){/* server error */}
+ if(!response.ok)throw Error(payload.error||payload.message||('Máy chủ chưa sẵn sàng (HTTP '+response.status+'). Cần triển khai Edge Function '+CHANNEL_FUNCTION+'.'));
+ return payload;
+}
+async function channelStatus(provider){
+ const id=++channelCheckId,el=$(provider==='facebook'?'fbStatus':'ttStatus');
+ el.textContent='Đang kiểm tra...';
+ try{const data=await channelCall(provider,'status');if(id!==channelCheckId)return;
+  el.textContent=data.connected===true?('Đã kết nối'+(data.display_name?' · '+data.display_name:'')):'Chưa kết nối';
+ }catch(e){if(id!==channelCheckId)return;el.textContent='Chưa thiết lập API';channelMessage(e.message);}
+}
+async function channelConnect(provider){
+ const btn=$(provider==='facebook'?'fbConnect':'ttConnect');btn.disabled=true;
+ try{const data=await channelCall(provider,'authorize');
+  if(!data.authorization_url)throw Error('Máy chủ chưa cung cấp đường dẫn ủy quyền.');
+  const url=new URL(data.authorization_url);
+  const allow=provider==='facebook'?['www.facebook.com','facebook.com']:['www.tiktok.com','tiktok.com'];
+  if(url.protocol!=='https:'||!allow.includes(url.hostname))throw Error('Đường dẫn ủy quyền không hợp lệ.');
+  window.location.assign(url.href);
+ }catch(e){channelMessage(e.message)}finally{btn.disabled=false}
+}
+$('fbConnect').onclick=()=>channelConnect('facebook');$('ttConnect').onclick=()=>channelConnect('tiktok');
+$('fbRefresh').onclick=()=>channelStatus('facebook');$('ttRefresh').onclick=()=>channelStatus('tiktok');
+
+function notice(message,error=false){$('message').textContent=message;$('message').className='msg'+(error?' error':'');}
+function setMode(next){mode=next;$('tabLogin').classList.toggle('active',mode==='login');$('tabSignup').classList.toggle('active',mode==='signup');$('shopField').classList.toggle('hidden',mode!=='signup');$('submitBtn').textContent=mode==='signup'?'Đăng ký miễn phí':'Đăng nhập';$('password').autocomplete=mode==='signup'?'new-password':'current-password';notice('',false);$('message').classList.add('hidden');}
+function lock(v){busy=v;for(const id of ['submitBtn','activateBtn','logoutBtn','resetPassword'])$(id).disabled=v;}
+function friendly(error){const m=error?.message||String(error);if(/already registered/i.test(m))return 'Email đã đăng ký. Hãy đăng nhập hoặc đặt lại mật khẩu.';if(/invalid login credentials/i.test(m))return 'Email hoặc mật khẩu không đúng.';if(/email not confirmed/i.test(m))return 'Vui lòng xác minh email trước khi đăng nhập.';if(/Trial already used/i.test(m))return 'Tài khoản đã sử dụng lượt dùng thử.';if(/Shop already exists/i.test(m))return 'Tài khoản đã có shop.';return m;}
+async function refresh(){if(!ready){notice('Chưa cấu hình Supabase URL và Publishable/Anon Key trong file HTML.',true);return;}const {data:{user},error}=await supabase.auth.getUser();if(error||!user){adminCheckVersion++;hideAdmin();channelReset();$('signedOut').classList.remove('hidden');$('signedIn').classList.add('hidden');$('orderArea').classList.add('hidden');currentShopId=null;currentShopActive=false;return;}$('signedOut').classList.add('hidden');$('signedIn').classList.remove('hidden');$('accountEmail').textContent=user.email||'Đã đăng nhập';void checkAdmin(user);currentShopId=null;currentShopActive=false;channelReset();$('orderArea').classList.add('hidden');$('shopBox').classList.add('hidden');$('activateBox').classList.add('hidden');$('pendingBox').classList.add('hidden');if(!user.email_confirmed_at){notice('Hãy xác minh email trước khi kích hoạt dùng thử.',true);return;}
+// Cần SELECT policy cho owner trên lp_members và lp_shops; nếu chưa có, hiển thị trạng thái an toàn.
+const {data:members,error:memberErr}=await supabase.from('lp_members').select('shop_id,role').eq('user_id',user.id).eq('role','owner').limit(1);
+if(memberErr){$('pendingBox').classList.remove('hidden');notice('Chưa đọc được thông tin shop: '+friendly(memberErr),true);return;}
+if(members?.length){const {data:shop,error:shopErr}=await supabase.from('lp_shops').select('name,plan_code,expires_at,suspended').eq('id',members[0].shop_id).maybeSingle();$('shopBox').classList.remove('hidden');currentShopId=members[0].shop_id;$('channelArea').classList.remove('hidden');currentShopActive=!!shop&&!shopErr&&!shop.suspended&&!!shop.expires_at&&new Date(shop.expires_at).getTime()>Date.now();$('orderArea').classList.remove('hidden');$('saveOrder').disabled=!currentShopActive;$('shopInfo').textContent=shopErr?'Đã có shop. Chưa đọc được thông tin gói.':shop?`Shop: ${shop.name} • Gói: ${shop.plan_code.toUpperCase()} • Hết hạn: ${shop.expires_at?new Date(shop.expires_at).toLocaleString('vi-VN'):'Chưa có'} • ${shop.suspended?'Đang khóa':'Không bị khóa thủ công'}`:'Đã có liên kết shop. Vui lòng liên hệ quản trị.';return;}
+// Nếu chưa có owner, backend RPC vẫn tự kiểm tra lịch sử dùng thử trước khi cấp.
+$('activateBox').classList.remove('hidden');}
+$('tabLogin').onclick=()=>setMode('login');$('tabSignup').onclick=()=>setMode('signup');
+$('authForm').onsubmit=async e=>{e.preventDefault();if(busy)return;if(!ready){notice('Hãy cấu hình Supabase trước khi sử dụng.',true);return;}lock(true);try{const email=$('email').value.trim(),password=$('password').value;if(mode==='login'){const {error}=await supabase.auth.signInWithPassword({email,password});if(error)throw error;await refresh();notice('Đăng nhập thành công.');}else{const name=$('shopName').value.trim();if(name.length<2||name.length>100)throw Error('Tên shop phải dài từ 2 đến 100 ký tự.');const {data,error}=await supabase.auth.signUp({email,password,options:{emailRedirectTo:location.origin+location.pathname,data:{requested_shop_name:name}}});if(error)throw error;sessionStorage.setItem('lp_pending_shop_name',name);if(data.session){await activate(name);}else notice('Đã gửi yêu cầu đăng ký. Vui lòng mở email xác minh, sau đó quay lại đăng nhập và kích hoạt shop.');}}catch(err){notice(friendly(err),true);}finally{lock(false);}};
+async function activate(name){const {data,error}=await supabase.rpc('lp_activate_trial',{p_shop_name:name});if(error)throw error;sessionStorage.removeItem('lp_pending_shop_name');await refresh();notice('Kích hoạt dùng thử thành công! Mã shop: '+data);}
+$('activateBtn').onclick=async()=>{if(busy)return;lock(true);try{const name=$('newShopName').value.trim();if(name.length<2||name.length>100)throw Error('Tên shop phải dài từ 2 đến 100 ký tự.');await activate(name);}catch(err){notice(friendly(err),true);}finally{lock(false);}};
+$('logoutBtn').onclick=async()=>{lock(true);try{const {error}=await supabase.auth.signOut();if(error)throw error;await refresh();notice('Đã đăng xuất.');}catch(err){notice(friendly(err),true);}finally{lock(false);}};
+$('resetPassword').onclick=async()=>{if(!ready){notice('Chưa cấu hình Supabase.',true);return;}const email=$('email').value.trim();if(!email){notice('Nhập email trước khi yêu cầu đặt lại mật khẩu.',true);return;}lock(true);try{const {error}=await supabase.auth.resetPasswordForEmail(email,{redirectTo:location.origin+location.pathname});if(error)throw error;notice('Nếu email tồn tại, hệ thống sẽ gửi hướng dẫn đặt lại mật khẩu.');}catch(err){notice(friendly(err),true);}finally{lock(false);}};
+
+// Xem trước/in phiếu tại trình duyệt; lưu đơn chỉ qua RPC được xác thực.
+const fmt = n => Math.round(n).toLocaleString('vi-VN');
+const safeNum = (value, max) => {const n=Number(value);return Number.isFinite(n)&&n>=0&&n<=max?n:0;};
+function addOrderItem(name='',qty=1,price=0){
+ const wrap=document.createElement('div');wrap.className='order-items';
+ const product=document.createElement('input');product.placeholder='Tên sản phẩm';product.maxLength=100;product.value=name;product.setAttribute('aria-label','Tên sản phẩm');
+ const quantity=document.createElement('input');quantity.type='number';quantity.min='1';quantity.max='9999';quantity.step='1';quantity.value=qty;quantity.setAttribute('aria-label','Số lượng');
+ const cost=document.createElement('input');cost.type='number';cost.min='0';cost.max='1000000000';cost.step='1000';cost.value=price;cost.setAttribute('aria-label','Đơn giá');
+ const remove=document.createElement('button');remove.type='button';remove.textContent='×';remove.setAttribute('aria-label','Xóa sản phẩm');
+ for(const el of [product,quantity,cost])el.addEventListener('input',()=>{savedOrderId=null;renderReceipt();});
+ remove.onclick=()=>{savedOrderId=null;wrap.remove();renderReceipt();};wrap.append(product,quantity,cost,remove);$('orderItems').append(wrap);renderReceipt();
+}
+function receiptText(){
+ const items=[...$('orderItems').children].map(row=>{const [name,q,p]=row.querySelectorAll('input');return {name:name.value.trim(),qty:safeNum(q.value,9999),price:safeNum(p.value,1e9)};}).filter(x=>x.name&&x.qty>=1);
+ const total=items.reduce((a,x)=>a+x.qty*x.price,0);
+ const lines=['LIVE PRINT','PHIEU BAN HANG',new Date().toLocaleString('vi-VN'),'------------------------------',`Khach: ${$('orderCustomer').value.trim()||'Khach le'}`];
+ if($('orderPhone').value.trim())lines.push(`SDT: ${$('orderPhone').value.trim()}`);
+ lines.push('------------------------------');
+ for(const x of items)lines.push(x.name,`${x.qty} x ${fmt(x.price)} = ${fmt(x.qty*x.price)} d`);
+ lines.push('------------------------------',`TONG CONG: ${fmt(total)} d`);
+ if($('orderNote').value.trim())lines.push(`Ghi chu: ${$('orderNote').value.trim()}`);
+ lines.push('Cam on quy khach!');
+ return {text:lines.join('\n'),total,items};
+}
+function renderReceipt(){const r=receiptText();$('receiptPreview').textContent=r.text;$('printSheet').textContent=r.text;$('orderTotal').textContent=fmt(r.total)+' đ';}
+$('addItem').onclick=()=>addOrderItem();
+$('clearReceipt').onclick=()=>{savedOrderId=null;$('orderCustomer').value='';$('orderPhone').value='';$('orderNote').value='';$('orderItems').replaceChildren();addOrderItem();};
+for(const id of ['orderCustomer','orderPhone','orderNote'])$(id).addEventListener('input',()=>{savedOrderId=null;renderReceipt();});
+$('saveOrder').onclick=async()=>{
+ if(savingOrder)return;
+ if(savedOrderId){notice('Đơn này đã lưu. Mã đơn: '+savedOrderId+' — nhấn Làm mới để tạo đơn khác.');return;}
+ if(!currentShopId||!currentShopActive){notice('Shop hết hạn, đang khóa hoặc chưa có quyền tạo đơn.',true);return;}
+ const customer=$('orderCustomer').value.trim();
+ if(!customer){notice('Vui lòng nhập tên khách hàng.',true);return;}
+ const rows=[...$('orderItems').children];
+ if(rows.length<1||rows.length>100){notice('Đơn phải có từ 1 đến 100 sản phẩm.',true);return;}
+ const items=[];
+ for(const row of rows){
+   const [n,q,p]=row.querySelectorAll('input');
+   const name=n.value.trim(),quantity=Number(q.value),price=Number(p.value);
+   if(!name||name.length>200||!Number.isInteger(quantity)||quantity<1||quantity>100000||!Number.isFinite(price)||price<0||price>999999999999||Math.round(price*100)!==price*100){notice('Kiểm tra tên, số lượng và đơn giá của từng sản phẩm.',true);return;}
+   items.push({name,quantity,price});
+ }
+ const total=items.reduce((sum,i)=>sum+i.quantity*i.price,0);
+ if(!Number.isFinite(total)||total>999999999999.99){notice('Tổng tiền vượt giới hạn.',true);return;}
+ savingOrder=true;$('saveOrder').disabled=true;
+ try{
+   const {data:{user},error:authError}=await supabase.auth.getUser();
+   if(authError||!user)throw Error('Phiên đăng nhập hết hạn. Hãy đăng nhập lại.');
+   const {data,error}=await supabase.rpc('lp_save_order',{p_shop_id:currentShopId,p_customer_name:customer,p_customer_phone:$('orderPhone').value.trim(),p_items:items});
+   if(error)throw error;
+   savedOrderId=data;
+   notice('Đã lưu đơn thành công! Mã đơn: '+data+'. Bạn có thể in phiếu hoặc nhấn Làm mới để tạo đơn tiếp.');
+ }catch(err){
+   const m=friendly(err);
+   notice(/Subscription expired|Trial expired|locked/i.test(m)?'Gói đã hết hạn hoặc shop bị khóa.':/Monthly order limit reached/i.test(m)?'Đã hết số đơn được phép trong kỳ.':m,true);
+ }finally{savingOrder=false;$('saveOrder').disabled=!currentShopActive;}
+};
+$('printReceipt').onclick=()=>{const r=receiptText();if(!r.items.length){notice('Nhập ít nhất một sản phẩm hợp lệ trước khi in.',true);return;}renderReceipt();window.print();};
+addOrderItem();
+
+if(ready){const pending=sessionStorage.getItem('lp_pending_shop_name');if(pending)$('newShopName').value=pending;await refresh();supabase.auth.onAuthStateChange(()=>{setTimeout(()=>refresh().catch(err=>notice(friendly(err),true)),0);});}else notice('Bản demo giao diện: cần điền Supabase URL và Publishable/Anon Key để kết nối.',true);
+</script></body></html>
