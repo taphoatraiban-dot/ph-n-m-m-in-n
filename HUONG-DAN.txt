@@ -1,0 +1,24 @@
+LIVE PRINT - Facebook Page + TikTok Login song song
+
+1. Chạy setup.sql trong Supabase SQL Editor trên môi trường thử nghiệm.
+2. Tạo Meta App và TikTok Developer App. Cần được phê duyệt các quyền liên quan.
+3. Supabase Edge Functions:
+   - lp-channel-connect dùng index.ts (Facebook)
+   - lp-tiktok-connect dùng tiktok-connect.ts (TikTok)
+   Cả hai cần cấu hình verify_jwt=false để nhận OAuth GET callback;
+   mã nguồn tự kiểm tra JWT với POST.
+4. Đặt secrets chỉ trên server:
+   FB_APP_ID, FB_APP_SECRET, FB_REDIRECT_URI,
+   TIKTOK_CLIENT_KEY, TIKTOK_CLIENT_SECRET, TIKTOK_REDIRECT_URI,
+   LIVEPRINT_SITE_URL, SUPABASE_URL, SUPABASE_ANON_KEY,
+   SUPABASE_SERVICE_ROLE_KEY.
+5. Đăng ký Redirect URI khớp chính xác trên từng nền tảng.
+6. Deploy LIVE-PRINT-Facebook-TikTok-song-song.html thành index.html.
+7. Kiểm tra cấu trúc bảng thành viên: mã mẫu dùng lp_members(shop_id,user_id).
+   Nếu DB thực tế khác, điều chỉnh trước khi deploy.
+8. Thử với tài khoản test; kiểm tra lỗi Meta/TikTok và chính sách cấp quyền.
+
+Chưa triển khai: tự động theo dõi livestream TikTok bằng @ID, đọc bình luận
+TikTok LIVE, webhook bình luận Facebook, chốt đơn tự động, làm mới token
+định kỳ, mã hóa token khi lưu DB. TikTok Login Kit không cấp sẵn quyền
+đọc bình luận livestream. Bảo vệ secrets và kiểm thử trước khi bán.
