@@ -3,8 +3,9 @@
 import {createClient} from 'https://esm.sh/@supabase/supabase-js@2';
 const get=(n:string)=>Deno.env.get(n)||'';
 const site=get('LIVEPRINT_SITE_URL');
+const siteOrigin=site?new URL(site).origin:'';
 const supa=createClient(get('SUPABASE_URL'),get('SUPABASE_SERVICE_ROLE_KEY'),{auth:{persistSession:false}});
-const cors={'Access-Control-Allow-Origin':site,'Access-Control-Allow-Headers':'authorization,apikey,content-type','Access-Control-Allow-Methods':'GET,POST,OPTIONS'};
+const cors={'Access-Control-Allow-Origin':siteOrigin,'Access-Control-Allow-Headers':'authorization,apikey,content-type','Access-Control-Allow-Methods':'GET,POST,OPTIONS'};
 const respond=(v:unknown,code=200)=>new Response(JSON.stringify(v),{status:code,headers:{...cors,'Content-Type':'application/json'}});
 const go=(k:string,v:string)=>{const u=new URL(site);u.searchParams.set(k,v);return Response.redirect(u,302)};
 const key=get('TIKTOK_CLIENT_KEY'),secret=get('TIKTOK_CLIENT_SECRET'),redirect=get('TIKTOK_REDIRECT_URI');
@@ -22,7 +23,7 @@ Deno.serve(async req=>{
    const params=new URLSearchParams({client_key:key,client_secret:secret,code,grant_type:'authorization_code',redirect_uri:redirect,code_verifier:record.code_verifier});
    const res=await fetch('https://open.tiktokapis.com/v2/oauth/token/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:params});
    const token=await res.json();if(!res.ok||!token.access_token)throw Error('TikTok token exchange failed');
-   const infoRes=await fetch('https://open.tiktokapis.com/v2/user/info/?fields=open_id,display_name,username',{headers:{Authorization:'Bearer '+token.access_token}});
+   const infoRes=await fetch('https://open.tiktokapis.com/v2/user/info/?fields=open_id,display_name',{headers:{Authorization:'Bearer '+token.access_token}});
    const info=await infoRes.json();if(!infoRes.ok)throw Error('TikTok profile read failed');
    const user=info.data?.user||{};
    const {error}=await supa.from('lp_tiktok_connections').upsert({shop_id:record.shop_id,connected_by:record.user_id,open_id:user.open_id||token.open_id,display_name:user.display_name||null,username:user.username||null,access_token:token.access_token,refresh_token:token.refresh_token||null,expires_at:new Date(Date.now()+Number(token.expires_in||0)*1000).toISOString()},{onConflict:'shop_id'});
